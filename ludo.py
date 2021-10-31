@@ -265,11 +265,11 @@ def start():
 
 
             else:
-                r.config(text = 'not available seat', state = 'disabled')
+                r.config(text = 'No Seat Is Available', state = 'disabled')
                 print('enough player list for today')
 
         else:
-            messagebox.showwarning('','Player cannot be empty!! ')
+            messagebox.showwarning('Player_Add_Protocol','Player cannot be empty!! ')
 
 
     a = StringVar()
@@ -277,13 +277,22 @@ def start():
     Entry(root , textvariable = a).place(x  = 800 , y = 100)
     r = Button(root , text = 'register',command = register )
     r.place( x = 920 , y = 100)
+    
+    def palyerout():
+        global root
+        root.tk()
+        root.destroy()
+        root = Tk()
+        print("Alright !")
+        
+        
 
 
     def roll():
         global dice
         luck = random.randint(1,6)
         
-        luck_display.config(text = f' The number comes is {luck}')
+        luck_display.config(text = f' You Got Number : {luck} ')
 
         if len(forward_list) < 1:
             forward_list.append(int(luck))
@@ -302,6 +311,14 @@ def start():
             
             motion = red_path[forward_list[0]]
             motion.config(image = red_img)
+            
+            
+        if turn == 'green':
+
+            green_path = [posy6, posy9 , posy12, posy15, posy18, posx19, posx22, posx25 , posx28 , posx31 , posx34 , posx35 , posx36 , posx33 , posx30 , posx27 , posx24 , posx21 , posx18 ,  posx15 ,  posx12 , posx9 , posx6 , posx3  , posy21 , posy24 , posy27 , posy30  , posy33 , posy36]
+            
+            motion = green_path[forward_list[0]]
+            motion.config(image = green_img)
 
     Button(root, text = 'Roll Dice' ,command = roll ,font = ('calibri',25,'bold')).place(x = 850 , y = 350 )   
         
